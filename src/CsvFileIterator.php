@@ -28,6 +28,7 @@ class CsvFileIterator extends \SplFileObject
      * @param string $escapeChar The escape character (at most one character). Defaults as a backslash (\). An empty string ("") disables the proprietary escape mechanism.
      * @throws RuntimeException If the filename cannot be opened.
      * @throws LogicException If the filename is a directory.
+     * @return void
      */
     public function __construct($fileName, $delimiter = ',', $fieldEnclosure = '"', $escapeChar = '\\')
     {
@@ -40,6 +41,7 @@ class CsvFileIterator extends \SplFileObject
      * Set callback function for values' filtering
      *
      * @param \Clousure $callback An anonymous function that processes values (for purposes like: formatting, cleaning etc.)
+     * @return void
      */
     public function setValueFilter($callback)
     {
@@ -47,7 +49,7 @@ class CsvFileIterator extends \SplFileObject
     }
 
     /**
-     * Apply filters to a row
+     * Apply filters to a row fields
      *
      * @param array $row Array of values in a row
      * @return array A row with filtered values
@@ -63,6 +65,8 @@ class CsvFileIterator extends \SplFileObject
     }
 
     /**
+     * Get columns' names
+     *
      * @return array
      */
     public function getColumnNames()
@@ -71,7 +75,9 @@ class CsvFileIterator extends \SplFileObject
     }
 
     /**
-     * @param array $names
+     * Set names for columns
+     *
+     * @param array $names One dimentional array with column names.
      * @return CsvFileIterator
      */
     public function setColumnNames(array $columnNames = [])
@@ -126,7 +132,7 @@ class CsvFileIterator extends \SplFileObject
     }
 
     /**
-     * Current CSV row
+     * Current CSV row.
      *
      * @return array Two dimensional array as [column_name => value]
      */
@@ -162,5 +168,31 @@ class CsvFileIterator extends \SplFileObject
         
         return $rowValues;
     }
+
+    /**
+     * Count file lines/rows.
+     *
+     * @return integer Lines/rows count.
+     */
+    public function count()
+    {
+        // Rewind the file to the first line if needed
+        $currentLine = $this->key();
+        if ($currentLine > 0) $this->rewind();
+        
+        // Skip header
+        if ($this->firstRowUsedAsColumnNames) $this->next();
+        
+        // Count lines
+        $count = 0;
+        while (!$this->eof()) {
+            $count++;
+            $this->next();
+        }
+        
+        // Set file pointer back to the current line
+        if ($currentLine != $this->key()) $this->seek($currentLine);
+
+        return $count;
+    }
 }
-?>
