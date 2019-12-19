@@ -170,7 +170,7 @@ class CsvFileIterator extends \SplFileObject
     }
 
     /**
-     * Count file lines/rows.
+     * Get lines/rows count excluding header line/row if set.
      *
      * @return integer Lines/rows count.
      */
