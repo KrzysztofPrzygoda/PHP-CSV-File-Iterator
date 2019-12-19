@@ -1,5 +1,5 @@
 # PHP CSV File Iterator
-PHP class for low memory processing large CSV files.
+PHP class for low memory processing large CSV files with data processing and data naming automation.
 
 ## Usage
 Reading data out of a CSV file:
