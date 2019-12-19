@@ -2,7 +2,6 @@
 PHP class for low memory processing large CSV files.
 
 ## Usage
-
 Reading data out of a CSV file:
 ```php
 use KRP\FileSystem\CsvFileIterator;
@@ -38,7 +37,7 @@ $columns_map = [
 $rows->useFirstRowAsHeader($columns_map);
 
 // ... or set your own column names if file hasn't got it's own header
-$columns = array('item_number', 'code', '3rd_item_number', 'ean', 'description1', 'description2', 'tax', 'price', 'price_sales', 'price_retail', 'cnv', 'stock', 'item_group', 'brand', 'image', 'saq', 'available');
+$columns = ['item_number', 'code', '3rd_item_number', 'ean', 'description1', 'description2', 'tax', 'price', 'price_sales', 'price_retail', 'cnv', 'stock', 'item_group', 'brand', 'image', 'saq', 'available'];
 $rows->setColumnNames($columns);
 
 // Get current column names
