@@ -19,7 +19,6 @@ $rows->setValueFilter(function ($value, $context) {
 $rows->useFirstRowAsHeader();
 
 // ... or map your own names for the first row values as column names
-$rows->useFirstRowAsHeader($columns_map);
 $columns_map = [
     'Shimanoitem' => 'code',
     'barcode/ean' => 'ean',
