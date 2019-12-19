@@ -42,7 +42,7 @@ $rows->setColumnNames($columns);
 // Get current column names
 var_dump($rows->getColumnNames());
 
-// Get lines/rows count (skiping header if exists)
+// Get file lines/rows count (excluding header if set)
 var_dump($rows->count());
 
 // Iterate throughout the file
