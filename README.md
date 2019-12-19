@@ -12,7 +12,7 @@ $rows = new CsvFileIterator($pathToFile, $delimiter = ';', $fieldEnclosure = '"'
 // Set value filter for values processing (e.g. formatting, stripping whitespaces, type casting etc.)
 $rows->setValueFilter(function ($value, $context) {
         var_dump($context); // Prints array ['row' => row_number, 'column' => column_name] to find out the value context if needed
-        return \clean_string($value); // Example of operation on value
+        return \clean_string($value); // Example of value processing
     });
 
 // Use the first row values as column names
